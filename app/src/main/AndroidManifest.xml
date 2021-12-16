@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.chatapplication">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -9,6 +11,33 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.ChatApplication">
+        <activity
+            android:name=".FacultyProfile"
+            android:exported="false" />
+        <activity
+            android:name=".Profile"
+            android:exported="false" />
+        <activity
+            android:name=".ForgotPassword"
+            android:exported="false" />
+        <activity
+            android:name=".SearchActivity"
+            android:exported="false" />
+        <activity
+            android:name=".FacultyActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Chat_Room"
+            android:exported="false" />
+        <activity
+            android:name=".FacultySignUp"
+            android:exported="false" />
+        <activity
+            android:name=".GroupChatActivity"
+            android:exported="false" />
+        <activity
+            android:name=".IntermediateSignupActivity"
+            android:exported="false" />
         <activity
             android:name=".ChatActivity"
             android:exported="false" />
@@ -26,7 +55,7 @@
         </activity>
         <activity
             android:name=".MainActivity"
-            android:exported="false"></activity>
+            android:exported="false" />
     </application>
 
 </manifest>

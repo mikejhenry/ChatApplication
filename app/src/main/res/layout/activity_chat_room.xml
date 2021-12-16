@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent">
+
+
+<LinearLayout
+    android:id="@+id/LinearLayout"
+    android:layout_alignParentBottom="true"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:layout_marginBottom="5dp"
+    android:weightSum="100">
+    <ImageView
+        android:id="@+id/attachment"
+        android:layout_width="40dp"
+        android:layout_height="50dp"
+        android:layout_weight="5"
+        android:src="@drawable/attachment"
+        android:layout_toLeftOf="@id/msg_input"
+        android:paddingBottom="3dp"/>
+
+
+    <EditText
+        android:id="@+id/msg_input"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/btn_send"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_marginTop="5dp"
+        android:layout_toStartOf="@+id/btn_send"
+        android:layout_toLeftOf="@+id/btn_send"
+        android:layout_toRightOf="@id/attachment"
+        android:layout_weight="85" />
+
+    <ImageView
+        android:id="@+id/btn_send"
+        android:layout_width="30dp"
+        android:layout_height="50dp"
+        android:layout_weight="10"
+        android:src="@drawable/send_button" />
+
+    </LinearLayout>
+
+    <ScrollView
+        android:id="@+id/scrollView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/LinearLayout"
+        android:layout_alignEnd="@+id/LinearLayout"
+        android:layout_alignRight="@+id/LinearLayout"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true">
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="15dp"
+            android:textAppearance="?android:attr/textAppearanceLarge" />
+    </ScrollView>
+</RelativeLayout>

@@ -3,6 +3,7 @@ package com.example.chatapplication
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import android.widget.EditText
 import android.widget.ImageView
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -16,6 +17,7 @@ class ChatActivity : AppCompatActivity() {
     private lateinit var chatRecyclerView: RecyclerView
     private lateinit var messageBox: EditText
     private lateinit var sendButton: ImageView
+    private lateinit var attachmentButton: ImageView
     private lateinit var messageAdapter: MessageAdapter
     private lateinit var messageList: ArrayList<Message>
     private lateinit var mDbRef: DatabaseReference
@@ -40,6 +42,7 @@ class ChatActivity : AppCompatActivity() {
         chatRecyclerView = findViewById(R.id.chatRecyclerView)
         messageBox = findViewById(R.id.messageBox)
         sendButton = findViewById(R.id.sendButton)
+        attachmentButton = findViewById(R.id.attachment)
         messageList = ArrayList()
         messageAdapter = MessageAdapter(this, messageList)
 
@@ -79,5 +82,14 @@ class ChatActivity : AppCompatActivity() {
             }
             //make message box empty after sending
             messageBox.setText("")
-        }}
+        }
+
+        attachmentButton.setOnClickListener{
+
+
+        }
+
+    //var map: HashMap<String,Object>
+    //map.put(room_name.getText().toString(),"")
+    }
 }

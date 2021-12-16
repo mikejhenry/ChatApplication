@@ -1,10 +1,9 @@
 package com.example.chatapplication
 
-class User {
+open class User {
     var name: String? = null
     var email: String? = null
     var uid: String? = null
-
     constructor(){
 
     }
@@ -15,3 +14,6 @@ class User {
         this.uid = uid
     }
 }
+
+
+

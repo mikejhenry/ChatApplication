@@ -14,12 +14,12 @@ import java.util.*
 import kotlin.collections.ArrayList
 
 
-class MainActivity : AppCompatActivity() {
+class FacultyActivity : AppCompatActivity() {
 
-    private lateinit var studentRecyclerView: RecyclerView
-    private lateinit var studentList: ArrayList<Student>
-    private lateinit var tempStudentList: ArrayList<Student>
-    private lateinit var adapter: StudentAdapter
+    private lateinit var facultyRecyclerView: RecyclerView
+    private lateinit var facultyList: ArrayList<Faculty>
+    private lateinit var tempFacultyList: ArrayList<Faculty>
+    private lateinit var adapter: FacultyAdapter
     private lateinit var mAuth: FirebaseAuth
     private lateinit var mDbRef: DatabaseReference
 
@@ -27,30 +27,26 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        //Initialize authorization
         mAuth = FirebaseAuth.getInstance()
         mDbRef = FirebaseDatabase.getInstance().getReference()
 
-        studentList = ArrayList()
-        tempStudentList = ArrayList()
-        adapter = StudentAdapter(this, studentList)
+        facultyList = ArrayList()
+        tempFacultyList = ArrayList()
+        adapter = FacultyAdapter(this, facultyList)
 
-        //Pair the recycler view in the layout to the kotlin file
-        studentRecyclerView = findViewById(R.id.userRecyclerView)
-        //Set layout manager
-        studentRecyclerView.layoutManager = LinearLayoutManager(this)
-        //Set adapter
-        studentRecyclerView.adapter = adapter
+        facultyRecyclerView = findViewById(R.id.userRecyclerView)
+        facultyRecyclerView.layoutManager = LinearLayoutManager(this)
+        facultyRecyclerView.adapter = adapter
 
-        mDbRef.child("student").addValueEventListener(object: ValueEventListener{
+        mDbRef.child("Faculty Members").addValueEventListener(object: ValueEventListener{
             override fun onDataChange(snapshot: DataSnapshot) {
 
-                studentList.clear()
+                facultyList.clear()
                 for(postSnapshot in snapshot.children){
-                    val currentStudent = postSnapshot.getValue(Student::class.java)
+                    val currentFaculty = postSnapshot.getValue(Faculty::class.java)
 
-                    if(mAuth.currentUser?.uid != currentStudent?.uid){
-                        studentList.add(currentStudent!!)
+                    if(mAuth.currentUser?.uid != currentFaculty?.uid){
+                        facultyList.add(currentFaculty!!)
                     }
 
 
@@ -62,7 +58,7 @@ class MainActivity : AppCompatActivity() {
                 TODO("Not yet implemented")
             }
         })
-        tempStudentList.addAll(studentList)
+
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -78,33 +74,33 @@ class MainActivity : AppCompatActivity() {
 
             override fun onQueryTextChange(newText: String?): Boolean {
                 println(newText)
-                tempStudentList.clear()
+                tempFacultyList.clear()
                 val searchText = newText?.lowercase(Locale.getDefault())?.trim()
                 if (searchText!!.isNotEmpty()) {
-                    println(studentList.toString())
-                    studentList.forEach {
+                    println(facultyList.toString())
+                    facultyList.forEach {
                         //If user name OR title
                         if (it.firstname?.lowercase(Locale.getDefault())!!.contains(searchText) || it.lastname?.lowercase(Locale.getDefault())!!.contains(searchText)) {
 
                             //As of now, nothing contains a title
-                            // || it.title?.lowercase(Locale.getDefault())!!.contains(searchText))
 
-                            tempStudentList.add(it)
+
+                            tempFacultyList.add(it)
                         }
                     }
 
                     //update adapter to CUSTOM adapter
-                    studentRecyclerView.adapter = adapter
-                    adapter.studentList = tempStudentList
+                    facultyRecyclerView.adapter = adapter
+                    adapter.facultyList = tempFacultyList
 
                     adapter.notifyDataSetChanged()
 
                 } else {
 
                     //If text is empty, inflate entire list
-                    tempStudentList.clear()
-                    tempStudentList.addAll(studentList)
-                    studentRecyclerView.adapter!!.notifyDataSetChanged()
+                    tempFacultyList.clear()
+                    tempFacultyList.addAll(facultyList)
+                    facultyRecyclerView.adapter!!.notifyDataSetChanged()
 
                 }
                 return true
@@ -120,21 +116,19 @@ class MainActivity : AppCompatActivity() {
         if(item.itemId == R.id.logout){
             //wrote the logic for logout
             mAuth.signOut()
-            val intent = Intent(this@MainActivity,Login::class.java)
+            val intent = Intent(this@FacultyActivity,Login::class.java)
             finish()
             startActivity(intent)
             return true
         } else if(item.itemId == R.id.groupChat){
-            val intent1 = Intent(this@MainActivity, GroupChatActivity::class.java)
+            val intent1 = Intent(this@FacultyActivity, GroupChatActivity::class.java)
             startActivity(intent1)
             return true
-        } else if(item.itemId == R.id.facultyList){
-            val intent1 = Intent(this@MainActivity, FacultyActivity::class.java)
+        } else if(item.itemId == R.id.studentList) {
+            val intent1 = Intent(this@FacultyActivity, MainActivity::class.java)
             startActivity(intent1)
             return true
-        } else if(item.itemId == R.id.studentList){
-            return true
-        }
+        } else
         return true
     }
 }

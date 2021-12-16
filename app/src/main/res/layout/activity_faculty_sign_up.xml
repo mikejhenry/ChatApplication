@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/gray"
-    tools:context=".SignUp">
+    tools:context=".FacultySignUp">
 
     <ImageView
         android:id="@+id/app_logo"
@@ -19,7 +19,7 @@
         android:id="@+id/edt_email"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:layout_below="@id/edt_dept"
+        android:layout_below="@id/edt_rollnumber"
         android:layout_marginTop="10dp"
         android:hint="Email"
         android:paddingLeft="13dp"
@@ -27,23 +27,31 @@
         android:background="@drawable/edt_background"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp" />
-
-
     <EditText
-        android:id="@+id/edt_year"
+        android:id="@+id/edt_rollnumber"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:layout_below="@id/edt_student_id_no"
+        android:layout_below="@id/edt_dept"
         android:layout_marginTop="10dp"
-        android:hint="Year"
+        android:hint="Roll Number"
         android:paddingLeft="13dp"
         android:textColorHint="@color/black"
         android:background="@drawable/edt_background"
         android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:inputType="number"/>
+        android:layout_marginRight="20dp" />
 
-
+    <EditText
+        android:id="@+id/edt_dept"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_below="@id/edt_lastname"
+        android:layout_marginTop="10dp"
+        android:hint="Department"
+        android:paddingLeft="13dp"
+        android:textColorHint="@color/black"
+        android:background="@drawable/edt_background"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp" />
 
     <TextView
         android:id="@+id/tv_univ_email"
@@ -53,33 +61,33 @@
         android:layout_marginTop="6dp"
         android:gravity="center|center_horizontal"
         android:text="Please use your University Email Address."
-        android:textStyle="bold"
         android:translationX="75dp" />
 
+
     <EditText
-        android:id="@+id/edt_frstname"
+        android:id="@+id/edt_name"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_below="@id/tv_univ_email"
-        android:layout_marginLeft="20dp"
         android:layout_marginTop="10dp"
-        android:layout_marginRight="20dp"
-        android:background="@drawable/edt_background"
         android:hint="First Name"
+        android:textColorHint="@color/black"
         android:paddingLeft="13dp"
-        android:textColorHint="@color/black" />
+        android:background="@drawable/edt_background"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp" />
     <EditText
-        android:id="@+id/edt_lstname"
+        android:id="@+id/edt_lastname"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:layout_below="@id/edt_frstname"
-        android:layout_marginLeft="20dp"
+        android:layout_below="@id/edt_name"
         android:layout_marginTop="10dp"
-        android:layout_marginRight="20dp"
-        android:background="@drawable/edt_background"
         android:hint="Last Name"
+        android:textColorHint="@color/black"
         android:paddingLeft="13dp"
-        android:textColorHint="@color/black" />
+        android:background="@drawable/edt_background"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp" />
     <EditText
         android:id="@+id/edt_password"
         android:layout_width="match_parent"
@@ -108,49 +116,13 @@
         android:layout_marginRight="20dp"
         android:ems="10"
         android:inputType="textPassword"/>
-    <EditText
-        android:id="@+id/edt_student_id_no"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_below="@id/edt_rollnumber"
-        android:layout_marginTop="10dp"
-        android:hint="Student ID#"
-        android:paddingLeft="13dp"
-        android:textColorHint="@color/black"
-        android:background="@drawable/edt_background"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp" />
 
-    <EditText
-        android:id="@+id/edt_dept"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_below="@id/edt_lstname"
-        android:layout_marginTop="10dp"
-        android:hint="Department"
-        android:paddingLeft="13dp"
-        android:textColorHint="@color/black"
-        android:background="@drawable/edt_background"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp" />
-    <EditText
-        android:id="@+id/edt_rollnumber"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_below="@id/edt_repeat_password"
-        android:layout_marginTop="10dp"
-        android:hint="Roll #"
-        android:paddingLeft="13dp"
-        android:textColorHint="@color/black"
-        android:background="@drawable/edt_background"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp" />
 
     <Button
         android:id="@+id/btn_signup"
         android:layout_width="150dp"
         android:layout_height="wrap_content"
-        android:layout_below="@id/edt_year"
+        android:layout_below="@id/edt_repeat_password"
         android:text="Sign up"
         android:background="@drawable/btn_background"
         android:textColor="@color/white"
