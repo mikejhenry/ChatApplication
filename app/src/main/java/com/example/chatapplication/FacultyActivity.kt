@@ -121,7 +121,7 @@ class FacultyActivity : AppCompatActivity() {
             startActivity(intent)
             return true
         } else if(item.itemId == R.id.groupChat){
-            val intent1 = Intent(this@FacultyActivity, GroupChatActivity::class.java)
+            val intent1 = Intent(this@FacultyActivity,GroupChatActivity::class.java)
             startActivity(intent1)
             return true
         } else if(item.itemId == R.id.studentList) {

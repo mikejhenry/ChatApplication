@@ -7,6 +7,8 @@ import android.os.Bundle
 import com.example.chatapplication.R
 import com.google.firebase.auth.FirebaseAuth
 import android.content.Intent
+import android.view.Menu
+import android.view.MenuItem
 import android.view.View
 import android.widget.Button
 import com.example.chatapplication.Login
@@ -25,6 +27,9 @@ class Profile : AppCompatActivity() {
     private var userID: String? = null
     private var logOut: Button? = null
     private var mainChat: Button? = null
+    private lateinit var mAuth: FirebaseAuth
+    private lateinit var mDbRef: DatabaseReference
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_profile)
@@ -41,6 +46,8 @@ class Profile : AppCompatActivity() {
         user = FirebaseAuth.getInstance().currentUser
         reference = FirebaseDatabase.getInstance().getReference("student")
         userID = user?.getUid()
+        mDbRef = FirebaseDatabase.getInstance().getReference()
+        mAuth = FirebaseAuth.getInstance()
         val greetingTextView = findViewById<View>(R.id.greeting) as TextView
         val fullNameTextView = findViewById<View>(R.id.fullName) as TextView
         val emailTextView = findViewById<View>(R.id.emailAddress) as TextView
@@ -66,4 +73,33 @@ class Profile : AppCompatActivity() {
             }
         })
     }
-}
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.menu2, menu)
+
+        return super.onCreateOptionsMenu(menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+
+        if(item.itemId == R.id.logout){
+            //wrote the logic for logout
+            mAuth.signOut()
+            val intent = Intent(this@Profile,Login::class.java)
+            finish()
+            startActivity(intent)
+            return true
+        } else if(item.itemId == R.id.groupChat){
+
+            return true
+        } else if(item.itemId == R.id.facultyList){
+            val intent1 = Intent(this@Profile, FacultyActivity::class.java)
+            startActivity(intent1)
+            return true
+        } else if(item.itemId == R.id.studentList){
+            val intent1 = Intent(this@Profile, MainActivity::class.java)
+            startActivity(intent1)
+        }
+        return true
+
+}}

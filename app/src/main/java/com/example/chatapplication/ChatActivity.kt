@@ -3,7 +3,8 @@ package com.example.chatapplication
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.View
+import android.view.Menu
+import android.view.MenuItem
 import android.widget.EditText
 import android.widget.ImageView
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -24,6 +25,10 @@ class ChatActivity : AppCompatActivity() {
     var receiverRoom: String? = null
     var senderRoom: String? = null
 
+
+    private lateinit var mAuth: FirebaseAuth
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_chat)
@@ -34,7 +39,7 @@ class ChatActivity : AppCompatActivity() {
 
         val senderUid = FirebaseAuth.getInstance().currentUser?.uid
         mDbRef = FirebaseDatabase.getInstance().getReference()
-
+        mAuth = FirebaseAuth.getInstance()
         senderRoom = receiverUid + senderUid
         receiverRoom = senderUid + receiverUid
         supportActionBar?.title = name
@@ -91,5 +96,33 @@ class ChatActivity : AppCompatActivity() {
 
     //var map: HashMap<String,Object>
     //map.put(room_name.getText().toString(),"")
+    }
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.menu2, menu)
+
+        return super.onCreateOptionsMenu(menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+
+        if(item.itemId == R.id.logout){
+            //wrote the logic for logout
+            mAuth.signOut()
+            val intent = Intent(this@ChatActivity,Login::class.java)
+            finish()
+            startActivity(intent)
+            return true
+        } else if(item.itemId == R.id.groupChat){
+
+            return true
+        } else if(item.itemId == R.id.facultyList){
+            val intent1 = Intent(this@ChatActivity, FacultyActivity::class.java)
+            startActivity(intent1)
+            return true
+        } else if(item.itemId == R.id.studentList){
+            val intent1 = Intent(this@ChatActivity, MainActivity::class.java)
+            startActivity(intent1)
+        }
+        return true
     }
 }
